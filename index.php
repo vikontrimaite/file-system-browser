@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1>Hello! Welcome to the PHP File System browser</h1>
+    <p>Now you are here: <?php echo $_SERVER['REQUEST_URI'];?></p>
     <table>
         <tr>
             <th>Type</th>
@@ -18,6 +19,7 @@
 
         <?php
             $dir = scandir('.');
+            
             foreach ($dir as $key) {
                 if ($key == '.' || $key == '..') {
                     continue;
