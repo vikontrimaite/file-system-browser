@@ -1,3 +1,15 @@
+<?php 
+    session_start();
+    // logout logic
+    if(isset($_GET['action']) and $_GET['action'] == 'logout'){
+        session_start();
+        unset($_SESSION['username']);
+        unset($_SESSION['password']);
+        unset($_SESSION['logged_in']);
+        print('Logged out!');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,42 +20,54 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello! Welcome to the PHP File System browser</h1>
-    <p>Now you are here: <?php echo $_SERVER['REQUEST_URI'];?></p>
-    <table>
-        <tr>
-            <th>Type</th>
-            <th>Name</th>
-            <th>Actions</th>
-        </tr>
 
-        <?php
-            $dir = scandir('.');
-            
-            foreach ($dir as $key) {
-                if ($key == '.' || $key == '..') {
-                    continue;
-                } elseif (is_file($key)) {
-                    echo 
-                    "<tr>
-                        <td>File</td>
-                        <td>$key</td>
-                        <td>ACTION</td>
-                    </tr>";
-                } 
-                elseif (is_dir($key)) {
-                            echo
-                            "<tr>
-                                <td>Directory</td>
-                                <td><a href=\"./$key\">$key</a></td>
-                                <td>ACTION</td>
-                            </tr>";
-                    }
-                    
-                } 
-            
+
+      <div>
+      <h2>Enter Username and Password</h2> 
+      <div>
+         <?php
+            $msg = '';
+            if (isset($_POST['login']) 
+                && !empty($_POST['username']) 
+                && !empty($_POST['password'])
+            ) {	
+               if ($_POST['username'] == 'vi' && 
+                  $_POST['password'] == '12'
+                ) {
+                  $_SESSION['logged_in'] = true;
+                  $_SESSION['timeout'] = time();
+                  $_SESSION['username'] = 'vi';
+                  echo 'You have entered valid use name and password';
+               } else {
+                  $msg = 'Wrong username or password';
+               }
+            }
+         ?>
+      </div>
+      <div>
+        <?php 
+            if($_SESSION['logged_in'] == true){
+              
+                    print('You can only see this if you are logged in!');
+                
+               
+               include('session.php');
+            }
         ?>
-    </table>
+        <div style="background-color: violet">
+        <form action="./index.php" method="post">
+            <h4><?php echo $msg; ?></h4>
+            <label for="username">Username:</label>
+            <input type="text" name="username" placeholder="vi" required autofocus></br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" placeholder="12" required>
+            <button class = "btn btn-lg btn-primary btn-block" type="submit" name="login">Login</button>
+        </form>
+        </div>
+       
+        Click here to <a href = "index.php?action=logout"> logout.
+      </div> 
+      </div>
+
 </body>
 </html>
-    
