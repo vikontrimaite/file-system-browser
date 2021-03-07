@@ -1,4 +1,0 @@
-// <a href="$current?path=$key . '/>' . $key . "</a>
-                                // <a href=" . $current . '?path=' . $key . '/>' . $key . "</a>
-
-                                 // <a href=\"?delete=1\">Delete</a>

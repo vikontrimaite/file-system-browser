@@ -1,2 +1,0 @@
- 
-// <a href="' . $current . $key . '/">' .  $key . '</a>
