@@ -61,6 +61,17 @@ if(isset($_POST['delete'])) {
 }
 
 // make a new directory
+if(isset($_POST['dir-name'])) {
+    $newDir = $_GET['path']. $_POST['dir-name'];
+    if (is_dir($_POST['dir-name'])) {
+        echo '<p style="color: red;">Folder with a name ' . $_POST['dir-name'] . ' exists aleready</p>';
+    } elseif (empty($_POST['dir-name'])) {
+        echo '<p style="color: red;">Folder name cannot be empty. Please eneter a new folder name!</p>';
+    } else {
+        mkdir($newDir);
+    }
+
+    }
 
 
 ?>
@@ -93,6 +104,7 @@ if ($key == '.' || $key == '..') {
                         <td> 
                         <a href=" . $current . '?path=' . $key . '/>' . $key . "</a>
                         </td>
+                        <td></td>
                        
                     </tr>";
 } elseif (is_file($path . $key)) {
@@ -122,7 +134,19 @@ if ($key == '.' || $key == '..') {
 
         </table>
 
+        <div style="background-color: violet;">
+        <form action="" method="POST">
+            <p>Create a new directory!</p>
+            <label for="dir-name">Enter a new directory name: </label>
+            <input type="text" name="dir-name">
+                <input type="submit" value="Create">
 
+            
+            <!-- <input type="text" name="dir-name">
+            <button type = "submit" name="dir-name">Create</button> -->
+
+        </form>
+</div>
 
 
 <div style="background-color: lightblue;">
