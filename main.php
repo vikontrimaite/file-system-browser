@@ -122,12 +122,16 @@ if ($key == '.' || $key == '..') {
 
 
 
-<div>
-
+<div style="background-color: lightblue;">
+<p>Please upload your image (JPEG or PNG):</p>
     <form action = "" method = "POST" enctype = "multipart/form-data">
         <input type = "file" name = "image" />
         <input type = "submit"/>
     </form>
+    </div>
+
+    <div style="background-color: lightgreen;">
+    <p>Here is info about your image file:</p>
     <ul>
         <li>Sent file: <?php echo $_FILES['image']['name'];  ?>
         <li>File size: <?php echo $_FILES['image']['size'];  ?>
@@ -135,6 +139,8 @@ if ($key == '.' || $key == '..') {
     </ul>
 
 </div>
+
+
 
 
 </body>
