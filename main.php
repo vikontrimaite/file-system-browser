@@ -12,35 +12,26 @@
 <?php
 $current = $_SERVER['REQUEST_URI'];
 
+// download
 if(isset($_POST['download'])){
-    // print('Path to download: ' . './' . $_GET["path"] . $_POST['download']);
     $file='./' . $_POST['download'];
-    // a&nbsp;b.txt
-    // a b.txt
     $fileToDownloadEscaped = str_replace("&nbsp;", " ", htmlentities($file, null, 'utf-8'));
     ob_clean();
     ob_start();
     header('Content-Description: File Transfer');
-    header('Content-Type: application/pdf'); // mime type → ši forma turėtų veikti daugumai failų, su šiuo mime type. Jei neveiktų reiktų daryti sudėtingesnę logiką
+    header('Content-Type: application/pdf'); 
     header('Content-Disposition: attachment; filename=' . basename($fileToDownloadEscaped));
     header('Content-Transfer-Encoding: binary');
     header('Expires: 0');
     header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
     header('Pragma: public');
-    header('Content-Length: ' . filesize($fileToDownloadEscaped)); // kiek baitų browseriui laukti, jei 0 - failas neveiks nors bus sukurtas
+    header('Content-Length: ' . filesize($fileToDownloadEscaped)); 
     ob_end_flush();
     readfile($fileToDownloadEscaped);
     exit;
 }
 
-// if(isset($_POST['delete'])){
-//     $deleteFile= $_POST['delete'];
-//     // $_GET['path'] .
-//     unlink($deleteFile);
-//                 header('Location: ' . $current);
-// }
-
-// print_r($_FILES);
+// upload
 if(isset($_FILES['image'])){
     $errors= array();
     $file_name = $_FILES['image']['name'];
@@ -63,6 +54,10 @@ if(isset($_FILES['image'])){
         print_r($errors);
     }
 }
+
+// delete
+
+// make a new directory
 
 
 ?>
