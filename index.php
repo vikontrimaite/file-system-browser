@@ -5,7 +5,7 @@
     unset($_SESSION['username']);
     unset($_SESSION['password']);
     unset($_SESSION['logged_in']);
-    $_SESSION['logout_msg'] = "Successfully logged out";
+    $_SESSION['logout_msg'] = '<p style="color: red;">Successfully logged out</p>';
     header('Location: http://localhost/p/fs-browser');
     exit;
   }
@@ -29,7 +29,7 @@
               $_SESSION['timeout'] = time();
               $_SESSION['username'] = 'vi';
 
-              echo '<p style="color: grey; font-style: italic; font-size: 10px;">You have entered valid user name and password!</p>';
+              echo '<p style="color: red">You have entered valid user name and password!</p>';
             } else {
               $msg = 'Wrong username or password!';
             }

@@ -38,7 +38,6 @@ if(isset($_FILES['image'])){
     $file_size = $_FILES['image']['size'];
     $file_tmp = $_FILES['image']['tmp_name'];
     $file_type = $_FILES['image']['type'];
-    // check extension (and only permit jpegs, jpgs and pngs)
     $file_ext = strtolower(end(explode('.',$_FILES['image']['name'])));
     $extensions = array("jpeg","jpg","png");
     if(in_array($file_ext,$extensions)=== false){
@@ -49,13 +48,17 @@ if(isset($_FILES['image'])){
     }
     if(empty($errors)==true) {
         move_uploaded_file($file_tmp, $file_name);
-        echo "Success";
+        echo '<p style="color: red;">An image uploaded successfully!</p>';
     }else{
         print_r($errors);
     }
 }
 
 // delete
+if(isset($_POST['delete'])) {
+    $fileToDelete = $_GET['path'] . $_POST['delete'];
+        unlink($fileToDelete);
+}
 
 // make a new directory
 
@@ -103,7 +106,8 @@ if ($key == '.' || $key == '..') {
         <button type="submit" name="download" value="' . $key . '"/>DOWNLOAD</button>
         </form>
 
-        <form action="?path=' . $key . '" method="POST">
+        
+        <form action="" method="POST">
         <button type="submit" name="delete" value="' . $key . '"/>DELETE</button>
         </form>
 
@@ -118,7 +122,6 @@ if ($key == '.' || $key == '..') {
 
         </table>
 
-        <br>
 
 
 
