@@ -5,11 +5,12 @@
 - logout
 - see directories and files in the current directory
 - walk into next directory and see dirs and files ther
-- upload a file (not working yet)
+- upload a file 
 - view info about your uploaded file
-- download a file (not working yet)
-- make a new directory (not working yet)
-- back button
+- download a file 
+- delete a file  (-)
+- make a new directory (-)
+- back button (-)
 
 ### Author
 [Vilija](https://github.com/vikontrimaite)
