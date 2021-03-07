@@ -57,7 +57,15 @@ if(isset($_FILES['image'])){
 // delete
 if(isset($_POST['delete'])) {
     $fileToDelete = $_GET['path'] . $_POST['delete'];
+    if ($fileToDelete == 'index.php' || 
+        $fileToDelete == 'main.php' ||
+        $fileToDelete == 'style.css' ||
+        $fileToDelete == "README.md")  {
+        echo '<p style="color: red;">You cannot delete this file! Please delete something that is not important</p>';
+    } else {
         unlink($fileToDelete);
+    }
+    
 }
 
 // make a new directory
