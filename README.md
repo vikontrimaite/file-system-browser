@@ -10,7 +10,6 @@
 - download a file 
 - delete a file 
 - make a new directory
-- back button (-)
 
 ## Author
 [Vilija](https://github.com/vikontrimaite)
